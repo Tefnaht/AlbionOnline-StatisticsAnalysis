@@ -35,7 +35,7 @@ public partial class App
         InitLogger();
         Log.Information($"Tool started with v{Assembly.GetExecutingAssembly().GetName().Version}");
 
-        SystemInfo.LogSystemInfo();
+        //SystemInfo.LogSystemInfo();
 
         AppDomain.CurrentDomain.UnhandledException += OnUnhandledException;
 
