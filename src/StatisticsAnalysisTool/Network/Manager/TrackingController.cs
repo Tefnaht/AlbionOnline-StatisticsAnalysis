@@ -30,6 +30,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Data;
 using StatisticsAnalysisTool.Network.PacketProviders;
+using StatisticsAnalysisTool.Trade.Stats;
 using ValueType = StatisticsAnalysisTool.Enumerations.ValueType;
 
 namespace StatisticsAnalysisTool.Network.Manager;
@@ -56,6 +57,9 @@ public class TrackingController : ITrackingController
     public readonly GatheringController GatheringController;
     public readonly PartyBuilderController PartyBuilderController;
     public readonly GuildController GuildController;
+
+    public readonly MarketStatsController MarketStatsController;
+
     private readonly List<LoggingFilterType> _notificationTypesFilters = new();
 
     public TrackingController(MainWindowViewModel mainWindowViewModel)
@@ -76,6 +80,8 @@ public class TrackingController : ITrackingController
         PartyBuilderController = new PartyBuilderController(this, mainWindowViewModel);
         GuildController = new GuildController(this, mainWindowViewModel);
         LiveStatsTracker = new LiveStatsTracker(this, mainWindowViewModel);
+
+        MarketStatsController = new MarketStatsController(this);
 
         _ = InitTrackingAsync();
     }
