@@ -13,6 +13,7 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows;
+using StatisticsAnalysisTool.DamageMeter;
 
 namespace StatisticsAnalysisTool.Network.Manager;
 
@@ -67,6 +68,7 @@ public class EntityController
                 Heal = oldEntity.Heal,
                 Overhealed = oldEntity.Overhealed,
                 IsInParty = oldEntity.IsInParty,
+                Spells = oldEntity.Spells
             };
         }
         else
@@ -520,6 +522,14 @@ public class EntityController
         foreach (var entity in _knownEntities)
         {
             entity.Value.Heal = 0;
+        }
+    }
+
+    public void ResetSpells()
+    {
+        foreach (var entity in _knownEntities)
+        {
+            entity.Value.Spells = new List<UsedSpell>();
         }
     }
 
